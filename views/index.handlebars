@@ -1,0 +1,62 @@
+<header class="text-center">
+  <nav>
+    <h1>Eat-Da-Burger!</h1>
+  </nav>
+</header>
+<main>
+<div class="container text-center">
+  <div>
+    <div class="row">
+      <div class="col-md-5 jumbotron">
+        <!--<h2>Submit</h2>-->
+          {{#each burgers}}
+            {{#unless this.devoured}}
+            <div class="row">
+            <div class="col-xs-3">
+                <form action="burgers/update/devour/{{this.id}}?_method=PUT" method="POST">
+                  <button class="btn btn-primary" style="float:right">Devour It!</button>
+                </form>
+            </div>
+            <div class="col-xs-6 burger">
+                <h4>{{this.burger_name}}</h4>
+            </div>
+            <div class="col-xs-2 img-responsive">
+              <img src="/assets/img/burger.jpg">
+            </div>
+            <hr class="break">
+            </div>
+            {{/unless}}
+          {{/each}}
+      </div>
+      <div class="col-md-5 col-md-offset-2 jumbotron">
+        <h2>All gone!</h2>
+          {{#each burgers}}
+            {{#if this.devoured}}
+            <div class="row">
+              <div class="col-xs-2 img-responsive">
+                <img src="/assets/img/halfeatenburger.jpg">
+              </div>
+              <div class="col-xs-6 col-xs-offset-4">
+                <h4>{{this.burger_name}}</h4>
+              </div>
+            </div>
+            <hr class="break">
+            {{/if}}
+          {{/each}}
+      </div>
+    </div>
+    <div class="row">
+      
+      <form class="form-inline" action="burgers/create" method="POST">
+        <div class="form-group">
+          <label for="ca"><h4>Name your burger!</h4></label>
+          <input type="text" id="ca" name="name" class="form-control" required>
+        </div>
+        <button class="btn btn-success" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+</footer>
